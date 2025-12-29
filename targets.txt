@@ -1,0 +1,28 @@
+Twoja aplikacja urosła błyskawicznie do rozmiarów prawdziwego kombajnu ("VantaStalker Pro"). Patrząc na to, co widziałem w usuniętej liście i obecnym stanie kodu, oto moje rekomendacje na "VantaStalker v2.0":
+
+1. 🏗️ Wielki Refactoring (Priorytet nr 1)
+Masz ~2500 linii kodu w jednym pliku 
+main.rs
+. To bomba zegarowa.
+
+Co zrobić? Rozbić kod na moduły:
+ui/ - osobne pliki dla każdego taba (interceptor.rs, dashboard.rs, recon.rs).
+core/ - logika biznesowa, bazy danych, handlery wątków.
+Dlaczego? Teraz dodanie czegokolwiek to ryzyko zepsucia reszty. Po podziale praca będzie 3x szybsza.
+2. 🔑 Authentication Helper
+Często testujesz aplikacje, które wylogowują Cię co 15 minut.
+
+Funkcja: Automat, który wykrywa wylogowanie (np. status 401/302) i sam loguje się ponownie w tle, odświeżając token/ciasteczko.
+Wartość: Oszczędza godziny frustracji podczas testów.
+3. 💣 Intruder "Cluster Bomb"
+Obecnie masz jeden payload marker (§payload§).
+
+Funkcja: Obsługa wielu markerów (§user§, §pass§) i tryby ataku:
+Pitchfork: (user1+pass1, user2+pass2)
+Cluster Bomb: (każdy z każdym - brute force wszystkich kombinacji).
+4. 🎨 Syntax Highlighting & Split View
+Funkcja: Kolorowanie składni JSON/HTML w requestach i odpowiedziach.
+Split View: Widok Request i Response obok siebie (lewo/prawo) zamiast góra/dół – wygodniejsze na szerokich monitorach.
+5. 🌍 Własne ustawienia (Config)
+Plik ~/.ventastalker/config.toml.
+Możliwość ustawienia: domyślnego proxy, ścieżek do własnych wordlist, domyślnego User-Agenta.
