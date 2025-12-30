@@ -24,3 +24,11 @@ urlencoding = "2.1"
 egui_plot = "0.29"
 pnet = "0.35"
 chrono = "0.4"
+toml = "0.9.10"
+directories = "6.0.0"
+axum = "0.8.8"
+uuid = { version = "1.19.0", features = ["v4", "fast-rng", "macro-diagnostics"] }
+tokio-tungstenite = { version = "0.28.0", features = ["rustls-tls-native-roots"] }
+futures-util = "0.3.31"
+similar = "2.7.0"
+rhai = "1.23.6"
